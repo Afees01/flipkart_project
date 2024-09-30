@@ -26,7 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
     _timer =
         Timer.periodic(Duration(seconds: _scrollInterval.toInt()), (timer) {
       if (_scrollController.hasClients) {
-        // Get the maximum scroll extent
         final maxScroll = _scrollController.position.maxScrollExtent;
         final currentScroll = _scrollController.offset;
         final nextScroll = (currentScroll + _scrollStep) % maxScroll;
@@ -58,13 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 _buildHeader(),
                 _buildSearchBar(),
-                SizedBox(height: 10),
                 _buildHorizontalBanner(),
                 SizedBox(height: 10),
                 _buildAvatarRow(),
-                SizedBox(
-                  height: 10,
-                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -104,6 +99,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Handpicked For You",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: 170,
+                      ),
+                      Icon(Icons.arrow_right_alt)
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      ProductCard(
+                          label: "Zebronics ze..\n₹249",
+                          imageUrl:
+                              "https://zebronics.com/cdn/shop/products/ZEB-NITRO-1-pic2.jpg?v=1623839913&width=1200"),
+                    ],
+                  ),
+                )
               ],
             )),
       ),
@@ -111,87 +136,95 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildHeader() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Row(
-        children: [
-          Container(
-            width: 30,
-            height: 30,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxggIt5CPQqUxKi3eW4QhNIKv5eH5LdhRwMA&s",
+    return Container(
+      color: Colors.blue, // Set background color to blue
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Row(
+          children: [
+            Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxggIt5CPQqUxKi3eW4QhNIKv5eH5LdhRwMA&s",
+                  ),
                 ),
               ),
             ),
-          ),
-          SizedBox(width: 10),
-          Text(
-            "𝙁𝙇𝙄𝙋𝙆𝘼𝙍𝙏",
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-              color: Colors.blueAccent,
+            SizedBox(width: 10),
+            Text(
+              "𝙁𝙇𝙄𝙋𝙆𝘼𝙍𝙏",
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors
+                    .white, // Change text color to contrast with blue background
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildSearchBar() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Row(
-        children: [
-          Column(
-            children: [
-              Text(
-                "Brand mall",
-                style: TextStyle(
-                    color: Colors.grey,
+    return Container(
+      color: Colors.blue, // Set background color to blue
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          children: [
+            Column(
+              children: [
+                Text(
+                  "Brand mall",
+                  style: TextStyle(
+                    color: Colors
+                        .white, // Change text color to contrast with blue background
                     fontSize: 15,
-                    fontWeight: FontWeight.bold),
-              ),
-              Switch(
-                value: switchbutton,
-                activeColor: Colors.blue,
-                onChanged: (value) {
-                  setState(() {
-                    switchbutton = value;
-                  });
-                },
-              ),
-            ],
-          ),
-          SizedBox(
-            width: 5,
-          ),
-          Expanded(
-            // Allows the TextField to take up remaining space
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Search",
-                hintStyle:
-                    TextStyle(color: Colors.grey), // Optional: Grey hint color
-                prefixIcon: Icon(Icons.search),
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.mic_none_outlined),
-                      SizedBox(width: 10),
-                      Icon(Icons.camera_alt_outlined),
-                    ],
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Switch(
+                  value: switchbutton,
+                  activeColor: Colors.blue,
+                  onChanged: (value) {
+                    setState(() {
+                      switchbutton = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+            SizedBox(width: 5),
+            Expanded(
+              child: TextField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors
+                      .white, // Optional: Background color of the text field
+                  border: OutlineInputBorder(),
+                  hintText: "Search",
+                  hintStyle: TextStyle(color: Colors.grey),
+                  prefixIcon: Icon(Icons.search),
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.mic_none_outlined),
+                        SizedBox(width: 10),
+                        Icon(Icons.camera_alt_outlined),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
