@@ -12,12 +12,15 @@ class CategoriesCard extends StatelessWidget {
     return Column(
       children: [
         CircleAvatar(
-          radius: 90,
+          radius: 80,
           backgroundImage: NetworkImage(imageurl),
         ),
         Text(
           label,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: const Color.fromARGB(255, 0, 95, 168)),
         ),
       ],
     );

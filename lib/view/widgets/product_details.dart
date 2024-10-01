@@ -7,7 +7,10 @@ class ProductDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.green,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage(
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ0pUJQqjo86I-kABQgFVxv72GMpCc45SZuA&s"))),
       ),
     );
   }
